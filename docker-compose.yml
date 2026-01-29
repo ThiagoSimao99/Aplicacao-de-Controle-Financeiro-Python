@@ -50,6 +50,9 @@ services:
     
     # Nome do container
     container_name: financeiro_web
+
+    volumes:
+      - .:/app
     
     # MAPEAMENTO DE PORTAS
     ports:
@@ -69,10 +72,7 @@ services:
       db:
         condition: service_healthy
     
-    # COMANDO: Executado quando o container inicia
-    command: >
-      sh -c "python manage.py migrate &&
-             gunicorn --bind 0.0.0.0:8000 config.wsgi:application"
+    command: python manage.py runserver 0.0.0.0:8000
 
 # ------------------------------------------
 # VOLUMES NOMEADOS
