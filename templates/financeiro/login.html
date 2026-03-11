@@ -3,72 +3,70 @@
 {% block title %}Login - MyFinance{% endblock %}
 
 {% block content %}
-<div class="row justify-content-center mt-5">
-    <div class="col-md-5 col-lg-4">
-        <div class="card shadow-lg border-0">
-            <div class="card-body p-4 p-md-5">
-                <div class="text-center mb-4">
-                    <i class="fas fa-wallet fa-3x text-primary mb-3"></i>
-                    <h2 class="fw-bold brand-title">MyFinance</h2>
-                    <p class="text-muted">Acesse sua conta</p>
-                </div>
+<div class="card">
+    <div class="card-body p-4 p-md-5">
+        <div class="text-center mb-4">
+            <div class="auth-logo">
+                <i class="fas fa-wallet"></i>
+            </div>
+            <h2 class="auth-title">Bem-vindo de volta</h2>
+            <p class="text-muted" style="font-size: 0.9rem;">Entre na sua conta para continuar</p>
+        </div>
 
-                <form method="post" novalidate>
-                    {% csrf_token %}
-                    
-                    {% if form.errors %}
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <i class="fas fa-exclamation-circle me-2"></i>
-                        Usuário ou senha inválidos.
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                    {% endif %}
+        <form method="post" novalidate>
+            {% csrf_token %}
 
-                    <div class="mb-3">
-                        <label for="id_username" class="form-label fw-semibold">
-                            <i class="fas fa-user me-1"></i>Usuário
-                        </label>
-                        {{ form.username }}
-                    </div>
+            {% if form.errors %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <i class="fas fa-exclamation-circle me-2"></i>
+                Usuário ou senha inválidos.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endif %}
 
-                    <div class="mb-3">
-                        <label for="id_password" class="form-label fw-semibold">
-                            <i class="fas fa-lock me-1"></i>Senha
-                        </label>
-                        <div class="input-group">
-                            {{ form.password }}
-                            <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('id_password', this)">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                        </div>
-                    </div>
+            <div class="mb-3">
+                <label for="id_username" class="form-label">
+                    <i class="fas fa-user me-1"></i>Usuário
+                </label>
+                {{ form.username }}
+            </div>
 
-                    <div class="mb-4 form-check">
-                        {{ form.remember_me }}
-                        <label class="form-check-label" for="id_remember_me">
-                            {{ form.remember_me.label }}
-                        </label>
-                        <div class="form-text">
-                            <small><i class="fas fa-info-circle me-1"></i>Salva apenas seu usuário. A senha será sempre solicitada.</small>
-                        </div>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold">
-                        <i class="fas fa-sign-in-alt me-2"></i>Entrar
+            <div class="mb-3">
+                <label for="id_password" class="form-label">
+                    <i class="fas fa-lock me-1"></i>Senha
+                </label>
+                <div class="input-group">
+                    {{ form.password }}
+                    <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('id_password', this)" style="border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                        <i class="fas fa-eye"></i>
                     </button>
-                </form>
-
-                <hr class="my-4">
-
-                <div class="text-center">
-                    <p class="mb-0 text-muted">
-                        Não tem uma conta?
-                        <a href="{% url 'register' %}" class="text-primary fw-semibold text-decoration-none">
-                            Cadastre-se
-                        </a>
-                    </p>
                 </div>
             </div>
+
+            <div class="mb-4 form-check">
+                {{ form.remember_me }}
+                <label class="form-check-label" for="id_remember_me" style="font-size: 0.85rem;">
+                    {{ form.remember_me.label }}
+                </label>
+                <div class="form-text">
+                    <small><i class="fas fa-info-circle me-1"></i>Salva apenas seu usuário. A senha será sempre solicitada.</small>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold" style="font-size: 0.95rem;">
+                <i class="fas fa-sign-in-alt me-2"></i>Entrar
+            </button>
+        </form>
+
+        <hr class="my-4">
+
+        <div class="text-center">
+            <p class="mb-0" style="font-size: 0.875rem; color: var(--text-muted);">
+                Não tem uma conta?
+                <a href="{% url 'register' %}" style="color: var(--accent-primary); font-weight: 600; text-decoration: none;">
+                    Cadastre-se
+                </a>
+            </p>
         </div>
     </div>
 </div>
@@ -79,7 +77,7 @@
 function togglePassword(inputId, btn) {
     const input = document.getElementById(inputId);
     const icon = btn.querySelector('i');
-    
+
     if (input.type === 'password') {
         input.type = 'text';
         icon.classList.remove('fa-eye');

@@ -3,25 +3,27 @@
 {% block title %}Confirmar Exclusão{% endblock %}
 
 {% block content %}
-<div class="row justify-content-center">
-    <div class="col-md-6">
-        <div class="card border-danger shadow-sm">
-            <div class="card-header bg-danger text-white">
-                <h4 class="mb-0">Tem certeza?</h4>
-            </div>
-            <div class="card-body text-center">
-                <p class="lead">Você está prestes a excluir:</p>
-                <h3 class="fw-bold mb-4">"{{ object }}"</h3>
-                
-                <p class="text-danger mb-4">
-                    <i class="fas fa-exclamation-triangle"></i> Esta ação não pode ser desfeita.
+<div class="row justify-content-center animate-in">
+    <div class="col-md-6 col-lg-5">
+        <div class="card" style="border: 1px solid var(--accent-danger); border-opacity: 0.3;">
+            <div class="card-body p-4 text-center">
+                <div style="width: 56px; height: 56px; border-radius: var(--radius-md); background: var(--accent-danger-light); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem; font-size: 1.4rem; color: var(--accent-danger);">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <h4 style="font-weight: 700; margin-bottom: 0.5rem;">Tem certeza?</h4>
+                <p style="color: var(--text-secondary); font-size: 0.9rem;">Você está prestes a excluir:</p>
+                <p style="font-weight: 700; font-size: 1.1rem; color: var(--text-primary); margin-bottom: 1rem;">"{{ object }}"</p>
+                <p class="text-danger" style="font-size: 0.85rem; margin-bottom: 1.5rem;">
+                    <i class="fas fa-info-circle me-1"></i> Esta ação não pode ser desfeita.
                 </p>
 
                 <form method="post">
                     {% csrf_token %}
-                    <div class="d-grid gap-2 d-md-block">
-                        <a href="javascript:history.back()" class="btn btn-secondary">Cancelar</a>
-                        <button type="submit" class="btn btn-danger px-4">Sim, excluir</button>
+                    <div class="d-flex gap-2 justify-content-center">
+                        <a href="javascript:history.back()" class="btn btn-secondary px-4">Cancelar</a>
+                        <button type="submit" class="btn btn-danger px-4">
+                            <i class="fas fa-trash me-1"></i>Sim, excluir
+                        </button>
                     </div>
                 </form>
             </div>

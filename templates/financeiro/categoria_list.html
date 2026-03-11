@@ -3,44 +3,62 @@
 {% block title %}Categorias{% endblock %}
 
 {% block content %}
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <h1>Categorias</h1>
-    <a href="{% url 'categoria-create' %}" class="btn btn-primary"><i class="fas fa-plus"></i> Nova Categoria</a>
+<div class="d-flex justify-content-between align-items-center page-header">
+    <div>
+        <h1>Categorias</h1>
+        <p>Organize suas transações por tipo</p>
+    </div>
+    <a href="{% url 'categoria-create' %}" class="btn btn-primary">
+        <i class="fas fa-plus me-1"></i> Nova Categoria
+    </a>
 </div>
 
-<div class="card">
-    <div class="card-body">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>Tipo</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for categoria in categorias %}
-                <tr>
-                    <td>{{ categoria.nome }}</td>
-                    <td>
-                        {% if categoria.tipo == 'receita' %}
-                            <span class="badge bg-success">Receita</span>
-                        {% else %}
-                            <span class="badge bg-danger">Despesa</span>
-                        {% endif %}
-                    </td>
-                    <td>
-                        <a href="{% url 'categoria-update' categoria.pk %}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
-                        <a href="{% url 'categoria-delete' categoria.pk %}" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
-                    </td>
-                </tr>
-                {% empty %}
-                <tr>
-                    <td colspan="3" class="text-center">Nenhuma categoria cadastrada.</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+<div class="card animate-in">
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Tipo</th>
+                        <th class="text-end">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for categoria in categorias %}
+                    <tr>
+                        <td style="font-weight: 600; color: var(--text-primary);">{{ categoria.nome }}</td>
+                        <td>
+                            {% if categoria.tipo == 'receita' %}
+                                <span class="badge bg-success">Receita</span>
+                            {% else %}
+                                <span class="badge bg-danger">Despesa</span>
+                            {% endif %}
+                        </td>
+                        <td class="text-end">
+                            <a href="{% url 'categoria-update' categoria.pk %}" class="btn btn-sm btn-outline-primary me-1">
+                                <i class="fas fa-pencil-alt"></i>
+                            </a>
+                            <a href="{% url 'categoria-delete' categoria.pk %}" class="btn btn-sm btn-outline-danger">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="3">
+                            <div class="empty-state" style="padding: 2rem 1rem;">
+                                <div class="empty-state-icon" style="width: 48px; height: 48px; font-size: 1.1rem;">
+                                    <i class="fas fa-tag"></i>
+                                </div>
+                                <p class="mb-0">Nenhuma categoria cadastrada.</p>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 {% endblock %}
