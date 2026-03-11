@@ -3,18 +3,29 @@
 {% block title %}Excluir Categoria{% endblock %}
 
 {% block content %}
-<div class="row justify-content-center">
-    <div class="col-md-6">
-        <div class="card border-danger">
-            <div class="card-header bg-danger text-white">
-                <h4 class="mb-0">Confirmar Exclusão</h4>
-            </div>
-            <div class="card-body text-center">
-                <p>Tem certeza que deseja excluir a categoria <strong>"{{ object }}"</strong>?</p>
+<div class="row justify-content-center animate-in">
+    <div class="col-md-6 col-lg-5">
+        <div class="card" style="border: 1px solid var(--accent-danger); border-opacity: 0.3;">
+            <div class="card-body p-4 text-center">
+                <div style="width: 56px; height: 56px; border-radius: var(--radius-md); background: var(--accent-danger-light); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem; font-size: 1.4rem; color: var(--accent-danger);">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <h4 style="font-weight: 700; margin-bottom: 0.5rem;">Confirmar Exclusão</h4>
+                <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                    Tem certeza que deseja excluir a categoria <strong style="color: var(--text-primary);">"{{ object }}"</strong>?
+                </p>
+                <p class="text-danger" style="font-size: 0.85rem; margin-bottom: 1.5rem;">
+                    <i class="fas fa-info-circle me-1"></i> Esta ação não pode ser desfeita.
+                </p>
+
                 <form method="post">
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-danger">Sim, Excluir</button>
-                    <a href="{% url 'categoria-list' %}" class="btn btn-secondary">Cancelar</a>
+                    <div class="d-flex gap-2 justify-content-center">
+                        <a href="{% url 'categoria-list' %}" class="btn btn-secondary px-4">Cancelar</a>
+                        <button type="submit" class="btn btn-danger px-4">
+                            <i class="fas fa-trash me-1"></i>Sim, Excluir
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>
